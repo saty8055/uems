@@ -1,0 +1,50 @@
+<!-- Topbar -->
+<nav class="navbar navbar-fixed-top boxed" style="z-index:10">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle topSpan" (click)="toggleRightBar()">
+                <span class="fa fa-user-circle"></span>
+            </button>
+            <div class="navbar-brand">
+                <div class="logoHolder">
+                    <a class="btn" (click)="toggleSideBar()" [tooltip]="sideBar ? 'Hide Sidebar' : 'Open SideBar'" placement="right" show-delay="200"><span class="fa fa-bars"></span> </a>
+                    <img src="/assets/logo.png" style="cursor: none;">
+                    <a class="btn" [tooltip]="sideBar ? 'HC MS' : 'HC MS'" placement="right" show-delay="200" style="font-family: serif;">ue-ms </a>
+                </div>
+                
+            </div>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a (click)="activate('profile')" [class.active]="key=='profile'"><i class="fa fa-user-circle-o"></i> Profile</a></li>
+                <li><a (click)="logout()"><i class="fa fa-power-off"></i> Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- SideBar -->
+<div class="sideBar boxed" [class.sideBarOpen]="sideBar" style="z-index:100">
+    <a [class.active]="key=='tables'" (click)="activate('tables')" [class.centered]="!sideBar" tooltip="Tables" placement="right" show-delay="200">
+        <span class="sideIcon fa fa-address-card" *ngIf="!sideBarMenu"></span>
+        <span *ngIf="sideBarMenu" class="fullLength"> <span class="sideIconDefault fa fa-address-card"></span> Tables</span>
+    </a>
+    <a [class.active]="key=='bookings'" (click)="activate('bookings')" [class.centered]="!sideBar" tooltip="Bookings" placement="right" show-delay="200">
+        <span class="sideIcon fa fa-plus" *ngIf="!sideBarMenu"></span>
+        <span *ngIf="sideBarMenu" class="fullLength"> <span class="sideIconDefault fa fa-plus"></span> Bookings</span>
+    </a>
+</div>
+
+<!-- Right SideBar -->
+<div class="rightSideBar" [class.rightSideBarOpen]="rightSideBar" style="z-index:100">
+    <a (click)="activate('profile')" [class.active]="key=='profile'">
+        <span class="fullLength"> <span class="sideIconDefault fa fa-user-circle-o"></span> Profile</span>
+    </a>
+    <a (click)="logout()">
+        <span class="fullLength"> <span class="sideIconDefault fa fa-power-off"></span>Logout</span>
+    </a>
+</div>
+
+<div class="contentBox" [class.contentWall]="sideBar">
+    <router-outlet></router-outlet>
+</div>

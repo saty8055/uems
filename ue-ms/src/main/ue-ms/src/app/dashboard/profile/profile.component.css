@@ -1,0 +1,9 @@
+.index {
+    text-align: left;
+}
+
+.dataGrid>tbody>tr>th,
+.dataGrid>tbody>tr>td {
+    padding-left: 10px;
+    padding-right: 10px;
+}

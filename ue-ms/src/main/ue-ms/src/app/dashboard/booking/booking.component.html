@@ -1,0 +1,39 @@
+
+ <div class="table-responsive">
+    <table class="table table-condensed table-bordered">
+         <thead>
+             <tr>
+                 <th class="centered indexCell matchDouble">#</th>
+                 <th class="extendedCell matchDouble">Table No</th>
+                 <th class="centered">Capacity</th>
+                 <th class="centered">Restaurant Name</th>
+                 <th class="centered">Price</th>
+                 <th class="centered">From </th>
+                 <th class="centered">To</th>
+                 <th class="centered">Booked At</th>
+                 <th class="centered" colspan="2">Status</th>
+             </tr>
+         </thead>
+         <tbody>
+             <tr *ngFor="let record of bookings; let i=index;">
+                 <th>{{i+1}}</th>
+                 <td>{{record.table.tableNum}}</td>
+                 <td>{{record.table.capacity}}</td>
+                 <td>{{record.table.restaurantName}}</td>
+                 <td>{{record.table.price| number :'.2-2'}}</td>
+                 <td>{{record.bookingFrom | date:'dd/MM/yyyy'}}</td>
+                 <td>{{record.bookingTo | date:'dd/MM/yyyy'}}</td>
+                 <td>{{record.createdAt | date:'dd/MM/yyyy - hh:mm aa'}}</td>
+                 <td *ngIf="!record.cancelled">{{record.cancelled ? 'CANCELLED' : 'ACTIVE'}}</td>
+                 <td *ngIf="record.cancelled" colspan="2">{{record.cancelled ? 'CANCELLED' : 'ACTIVE'}}</td>
+                 <td *ngIf="!record.cancelled"><button class="btn btnPrime" (click)="cancel(record.bookingId)" *ngIf="!record.cancelled"><span class="fa fa-remove"></span> Cancel</button></td>
+             </tr>
+             <tr *ngIf="bookings.length <1 ">
+                 <th colspan="13">No Record found</th>
+                 </tr>
+         </tbody>
+     </table>
+  
+ </div>
+ 
+ <app-loader></app-loader>

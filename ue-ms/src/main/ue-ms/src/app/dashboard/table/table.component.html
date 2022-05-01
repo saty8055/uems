@@ -1,0 +1,39 @@
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th><input class="form-control" type="date" [(ngModel)]="fromDate"/></th>
+            <th><input class="form-control" type="date" [(ngModel)]="toDate"/></th>
+            <th><button class="btn btnPrime fullCover" (click)="validateAndSearch()" ><span class="fa fa-eye"></span> Search</button></th>
+        </tr>
+    </thead>
+</table>
+<div class="table-responsive">
+    <table class="table table-condensed table-bordered">
+        <thead>
+            <tr>
+                <th class="centered indexCell matchDouble">#</th>
+                <th class="extendedCell matchDouble">Table No</th>
+                <th class="centered">Capacity</th>
+                <th class="centered">Name</th>
+                <th class="centered">Price</th>
+                <th class="centered">Suite</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let record of rooms; let i=index;">
+                <th>{{i+1}}</th>
+                <td>{{record.tableNum}}</td>
+                <td>{{record.capacity}}</td>
+                <td>{{record.restaurantName}}</td>
+                <td>{{record.price| number :'.2-2'}}</td>
+                <td><button class="btn btnPrime" (click)="book(record.tableId)"><span class="fa fa-save"></span> Book</button></td>
+            </tr>
+            <tr *ngIf="rooms.length <1 ">
+                <th colspan="9">No Record found</th>
+                </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<app-loader></app-loader>

@@ -1,0 +1,72 @@
+<div class="container-fluid" style="padding-top:100px;">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3 col-sm-12 col-xs-12" style="overflow: auto;">
+            <table class="dataGrid" style="margin-left: calc(50% - 345px);">
+                <thead>
+                    <tr>
+                        <th class="index" colspan="2">
+                            Personal Info
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="index" style="width:150px;">Name</th>
+                        <td style="width: 300px;">{{user.fullName}}</td>
+                    </tr>
+                    <tr>
+                        <th class="index">User Name</th>
+                        <td>{{user.username}}</td>
+                    </tr>
+                    <tr>
+                        <th class="index">e-mail</th>
+                        <td>{{user.email}}</td>
+                    </tr>
+                    <tr>
+                        <th class="index">Password</th>
+                        <td>
+                            <button class="btn" data-toggle="modal" data-target="#changePassword">change</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="changePassword" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content boxed">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title heading">Change Password</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" [(ngModel)]="oldPass" placeholder="Current Password">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" [(ngModel)]="pass" placeholder="New Password">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" [(ngModel)]="cPass" placeholder="Confirm Password">
+                </div>
+            </div>
+            <div class="modal-footer centered">
+                <button type="button" class="btn" data-dismiss="modal" (click)="changePassword()"><span class="fa fa-plus-square"></span> Change Password</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<app-loader>
+</app-loader>

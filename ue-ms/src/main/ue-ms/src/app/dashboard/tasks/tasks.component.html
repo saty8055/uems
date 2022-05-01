@@ -1,0 +1,72 @@
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th><button class="btn btnPrime fullCover" data-toggle="modal" data-target="#addFunds"><span class="fa fa-plus"></span> Add New Sale</button></th>
+        </tr>
+    </thead>
+</table>
+
+
+<div class="table-responsive">
+    <table class="table table-condensed table-bordered">
+        <thead>
+            <tr>
+                <th class="centered indexCell matchDouble">#</th>
+                <th class="extendedCell matchDouble">Sale ID</th>
+                <th class="centered">Units Sold</th>
+                <th class="centered">Unit Price</th>
+                <th class="centered">Total Price</th>
+                <th class="centered">Medicine Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let record of funds; let i=index;">
+                <th>{{i+1}}</th>
+                <td>{{record.saleId}}</td>
+                <td>{{record.units}}</td>
+                <td>{{record.medicine.mrp}}</td>
+                <td>{{record.medicine.medicineName * record.units}}</td>
+                <td>{{record.medicine.medicineName}}</td>
+            </tr>
+            <tr *ngIf="funds.length <1 ">
+                <th colspan="6">No Record found</th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addFunds" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content boxed">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title heading">Add Sale !</h4>
+            </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-info"></i></span>
+                        <input id="name" type="number" class="form-control"
+                            placeholder="Units" [(ngModel)]="units">
+                    </div>
+                    <div class="input-group" style="width: 100%;">
+                        <select class="form-control"
+                        [(ngModel)]="medicineId">
+                        <option value="noFilter"> -- Select Employee -- </option>
+                        <option *ngFor="let medicine of medicines; let i=index;" [value]="medicine.medicineId">
+                            {{medicine.medicineName | titlecase}}</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="modal-footer centered">
+                    <button type="button" class="btn" data-dismiss="modal" (click)="validateAndAdd()">Add Sale</button>
+                </div>
+        </div>
+
+    </div>
+</div>
+
+<app-loader></app-loader>

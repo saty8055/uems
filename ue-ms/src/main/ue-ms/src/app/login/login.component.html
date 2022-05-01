@@ -1,0 +1,63 @@
+<div class="container-fluid">
+
+    <div class="row content">
+        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 col-lg-offset-4 col-md-4">
+            <div class="fullLength centered">
+                <img src="/assets/logo.png" class="fixedImage">
+            </div>
+            <h3 class="dark centered">Identity Please !</h3>
+            <form [formGroup]="form" (ngSubmit)="confirmForLogin()">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+                    <input id="username" type="text" class="form-control" formControlName="username" placeholder="Username">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" style="height: 40px;"><i class="fa fa-lock"></i></span>
+                    <input id="password" [type]="showPass ? 'text' : 'password'" class="form-control hasEyeBtn" formControlName="password" placeholder="Password">
+                    <span class="input-group-addon eyeBtn" style="height: 40px;" (click)="togglePassword()"><i class="fa fa-eye" [class.fa-eye-slash]="showPass"></i></span>
+                </div>
+                <div class="input-group fullLength">
+                    <button class="btn btnPrime fullLength">Login</button>
+                </div>
+                <div class="input-group fullLength">
+                    <label class="left fullLength"><span class="clickable fa" [class.fa-square-o]="!remember" [class.fa-check-square-o]="remember" (click)="rememberMe()"></span> Remember Me </label>
+                </div>
+                <div class="input-group fullLength">
+                    <button type="button" class="btn btnPrime fullLength" (click)="goAndRegister()">Register now ?</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="forgotPass" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content boxed">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title heading">Reset Password !</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+                    <input id="username" type="text" class="form-control" [(ngModel)]="username" placeholder="Username">
+                </div>
+            </div>
+            <div class="modal-footer centered">
+                <button type="button" class="btn" data-dismiss="modal" (click)="resetPassword()">Send Reset Link</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<app-loader></app-loader>
